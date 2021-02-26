@@ -8,7 +8,7 @@ import re  # регулярные выражения
 def numbers(string_with_nums):
     """
     Функция принимает на входе строку
-    и выдает список цифр, содержащихся в ней 
+    и выдает список цифр, содержащихся в ней
     """
     return list(map(float, re.findall(r'(?<!\d)-?\d*[.,]?\d+', string_with_nums.replace(',', '.'))))
 
@@ -21,9 +21,9 @@ def more(need_list, have_list):
     """
 
     if need_list[0] <= have_list[0]:
-        return f'OK, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+        return f'OK, строка: {string_number}'
 
-    return f'Число больше чем нужно, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+    return f'Число больше чем нужно, строка: {string_number}'
 
 
 def low(need_list, have_list):
@@ -34,9 +34,9 @@ def low(need_list, have_list):
     """
 
     if need_list[0] >= have_list[0]:
-        return f'OK, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+        return f'OK, строка: {string_number}'
 
-    return f'Число меньше чем нужно, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+    return f'Число меньше чем нужно, строка: {string_number}'
 
 
 def in_interval_equally(need_list, have_list):
@@ -51,30 +51,25 @@ def in_interval_equally(need_list, have_list):
 
         if min(need_list) == need_list[0] and max(need_list) == need_list[1]:
             if min(need_list) <= have_list[0] <= max(need_list):
-                return f'OK, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+                return f'OK, строка: {string_number}'
 
             return f'Число не подходит под условия "не менее чем и не более чем", ' \
-                   f'строка: {wordDoc.tables[1].rows[string].cells[0].text} '
+                   f'строка: {string_number} '
 
         else:
             if need_list[1] <= have_list[0] <= need_list[0]:
-                return f'OK, но возможна ошибка в условии, лучше проверить, ' \
-                       f'строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+                return f'OK, но возможна ошибка в условии, лучше проверить, строка: {string_number}'
 
-            return f'Число не подходит под условия "не менее чем и не более чем", ' \
-                   f'строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+            return f'Число не подходит под условия "не менее чем и не более чем", строка: {string_number}'
 
     elif len(need_list) == len(have_list) == 1:
 
         if need_list[0] == have_list[0]:
-            return f'OK, но возможна ошибка в условии, лучше проверить, ' \
-                   f'строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+            return f'OK, но возможна ошибка в условии, лучше проверить, строка: {string_number}'
 
-        return f'Число не подходит под условия "не менее чем и не более чем", ' \
-               f'строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+        return f'Число не подходит под условия "не менее чем и не более чем", строка: {string_number}'
 
-    return f'Число не подходит под условия "не менее чем и не более чем", ' \
-           f'строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+    return f'Число не подходит под условия "не менее чем и не более чем", строка: {string_number}'
 
 
 def in_interval_not_equally(need_list, have_list):
@@ -87,18 +82,15 @@ def in_interval_not_equally(need_list, have_list):
 
     if min(need_list) == need_list[0] and max(need_list) == need_list[1]:
         if min(need_list) < have_list[0] < max(need_list):
-            return f'OK, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+            return f'OK, строка: {string_number}'
 
-        return f'Число не подходит под условия "не менее чем и не более чем", ' \
-               f'строка: {wordDoc.tables[1].rows[string].cells[0].text} '
+        return f'Число не подходит под условия "не менее чем и не более чем", строка: {string_number} '
 
     else:
         if need_list[1] < have_list[0] < need_list[0]:
-            return f'OK, но возможна ошибка в условии, лучше проверить, ' \
-                   f'строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+            return f'OK, но возможна ошибка в условии, лучше проверить, строка: {string_number}'
 
-        return f'Число не подходит под условия "не менее чем и не более чем", ' \
-               f'строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+        return f'Число не подходит под условия "не менее чем и не более чем", строка: {string_number}'
 
 
 def in_interval_biggest(need_list, have_list):
@@ -111,16 +103,15 @@ def in_interval_biggest(need_list, have_list):
 
     if min(need_list) == need_list[0] and max(need_list) == need_list[1]:
         if min(need_list) < have_list[0] <= max(need_list):
-            return f'OK, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+            return f'OK, строка: {string_number}'
 
-        return f'Число не подходит под условия "< & <=", строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+        return f'Число не подходит под условия "< & <=", строка: {string_number}'
 
     else:
         if need_list[1] <= have_list[0] <= need_list[0]:
-            return f'OK, но возможна ошибка в условии, лучше проверить, ' \
-                   f'строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+            return f'OK, но возможна ошибка в условии, лучше проверить, строка: {string_number}'
 
-        return f'Число не подходит под условия "< & <=", строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+        return f'Число не подходит под условия "< & <=", строка: {string_number}'
 
 
 def in_interval_lowest(need_list, have_list):
@@ -133,16 +124,15 @@ def in_interval_lowest(need_list, have_list):
 
     if min(need_list) == need_list[0] and max(need_list) == need_list[1]:
         if min(need_list) <= have_list[0] < max(need_list):
-            return f'OK, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+            return f'OK, строка: {string_number}'
 
-        return f'Число не подходит под условия "<= & <", строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+        return f'Число не подходит под условия "<= & <", строка: {string_number}'
 
     else:
         if need_list[1] <= have_list[0] <= need_list[0]:
-            return f'OK, но возможна ошибка в условии, лучше проверить, ' \
-                   f'строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+            return f'OK, но возможна ошибка в условии, лучше проверить, строка: {string_number}'
 
-        return f'Число не подходит под условия "<= & <", строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+        return f'Число не подходит под условия "<= & <", строка: {string_number}'
 
 
 def lowest(need_list, have_list):
@@ -152,9 +142,9 @@ def lowest(need_list, have_list):
     Принимает на входе числа, полученные функцией numbers
     """
     if need_list[0] > have_list[0]:
-        return f'OK, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+        return f'OK, строка: {string_number}'
 
-    return f'Число больше чем нужно, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+    return f'Число больше чем нужно, строка: {string_number}'
 
 
 def biggest(need_list, have_list):
@@ -165,9 +155,9 @@ def biggest(need_list, have_list):
     """
 
     if need_list[0] < have_list[0]:
-        return f'OK, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+        return f'OK, строка: {string_number}'
 
-    return f'Число меньше чем нужно, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+    return f'Число меньше чем нужно, строка: {string_number}'
 
 
 def only_numbers(need_list, have_list):
@@ -178,11 +168,11 @@ def only_numbers(need_list, have_list):
     """
     if len(have_list) == 1 and len(need_list) == 2:
         if need_list[0] <= have_list[0] <= need_list[1]:
-            return f'OK, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+            return f'OK, строка: {string_number}'
 
-        return f'Надо проверить, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+        return f'Надо проверить, строка: {string_number}'
 
-    return f'Надо проверить, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+    return f'Надо проверить, строка: {string_number}'
 
 
 def string_conditions(need_text, have_text):
@@ -202,17 +192,17 @@ def string_conditions(need_text, have_text):
                     break
 
         if set(result) == set(have_conditions_list):
-            return f'OK, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+            return f'OK, строка: {string_number}'
 
         elif len((set(result)) - set(have_conditions_list)) >= 1:
-            return f'Возможна опечатка в текстовом условии, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+            return f'Возможна опечатка в текстовом условии, строка: {string_number}'
 
-        return f'Текстовое условие не выполнено, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+        return f'Текстовое условие не выполнено, строка: {string_number}'
 
     elif 'и' in need_conditions_list:
-        return f'Надо проверить, текстовое условие "И" строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+        return f'Надо проверить, текстовое условие "И" строка: {string_number}'
 
-    return f'Надо проверить, строка: {wordDoc.tables[1].rows[string].cells[0].text}'
+    return f'Надо проверить, строка: {string_number}'
 
 
 # интерфейс программы
@@ -223,7 +213,7 @@ layout = [
     [sg.Submit('Старт'), sg.Cancel('Отмена')]
 ]
 window = sg.Window('СУПЕР ПРОВЕРЯЛЬЩИК ЗАЯВОК 3000', layout, background_color='green')
-while True:  # The Event Loop
+while True:
     event, values = window.read()
     # print(event, values) #debug
     if event in (None, 'Exit', 'Cancel', 'Отмена'):
@@ -238,9 +228,9 @@ while True:  # The Event Loop
         print('Начинаю проверку заявки. Строк к проверке:', table_size)
 
         for string in range(1, table_size):
-            # заносим в переменные текст из ячейки с условием (need) и тем что у нас есть (have)
-            need = wordDoc.tables[1].rows[string].cells[2].text
-            have = wordDoc.tables[1].rows[string].cells[3].text
+            need = wordDoc.tables[1].rows[string].cells[2].text.lower().replace(' ', '')
+            have = wordDoc.tables[1].rows[string].cells[3].text.lower().replace(' ', '')
+            string_number = wordDoc.tables[1].rows[string].cells[0].text
 
             # выделяем числа из выбранных ячеек в отдельные списки при помощи функции numbers
             need_num_list = numbers(need)
@@ -248,84 +238,83 @@ while True:  # The Event Loop
 
             if (any(word in wordDoc.tables[1].rows[string].cells[1].text.lower()
                     for word in ('диап', 'диоп', 'интер'))):
-                # проверяем, есть ли какие-то диапазоны в описании, если есть - явно на них указываем
-                print(
-                    f'Указан какой-то интервал, необходимо согласовать с заказчиком, '
-                    f'строка: {wordDoc.tables[1].rows[string].cells[0].text}')
+                # интервал/диапазон в описании
+                print(f'Указан какой-то интервал, необходимо согласовать с заказчиком, строка: {string_number}')
 
-            if need.lower().replace(' ', '') == have.lower().replace(' ', ''):
-                # если ячейки равны друг другу, то продолжаем дальше, т.к. нас это устраивает
-                print(f'OK, строка: {wordDoc.tables[1].rows[string].cells[0].text}')
+            if need == have:
+                print(f'OK, строка: {string_number}')
 
-            elif need.lower().replace(' ', '') == '' or have.lower().replace(' ', '') == '':
-                # если одна из ячеек пустая - сообщаем об этом
-                print(f'Пустая ячейка, строка: {wordDoc.tables[1].rows[string].cells[0].text}')
+            elif need == '' or have == '':
+                print(f'Пустая ячейка, строка: {string_number}')
 
-            elif (any(word in need.lower().replace(' ', '') for word in ('неменее', '≥', 'неменьше'))
-                  and all(word not in need.lower().replace(' ', '') for word in ('неболее', '≤', 'небольше', '<'))):
+            elif (any(word in need for word in ('неменее', '≥', 'неменьше'))
+                  and all(word not in need for word in ('неболее', '≤', 'небольше', '<'))):
 
-                # тут проверяем условие "не менее чем" (need <= have)
+                # не менее чем (need[0] <= have[0])
                 print(more(need_num_list, have_num_list))
 
-            elif (any(word in need.lower().replace(' ', '') for word in ('неболее', '≤', 'небольше'))
-                  and all(word not in need.lower().replace(' ', '') for word in ('неменее', '≥', 'неменьше', '>'))):
+            elif (any(word in need for word in ('неболее', '≤', 'небольше'))
+                  and all(word not in need for word in ('неменее', '≥', 'неменьше', '>'))):
 
-                # тут проверяем условие "не более чем" (need >= have)
+                # не более чем (need[0] >= have[0])
                 print(low(need_num_list, have_num_list))
 
-            elif (any(word in need.lower().replace(' ', '') for word in ('неболее', '≤', 'небольше'))
-                  and any(word in need.lower().replace(' ', '') for word in ('неменее', '≥', 'неменьше'))):
+            elif (any(word in need for word in ('неболее', '≤', 'небольше'))
+                  and any(word in need for word in ('неменее', '≥', 'неменьше'))):
 
-                # тут проверяем условие "не менее чем и не более чем" (need1 <= have <= need2)
+                # не менее чем и не более чем (need[0] <= have[0] <= need[1])
                 print(in_interval_equally(need_num_list, have_num_list))
 
-            elif (any(word in need.lower().replace(' ', '') for word in ('более', '>', 'больше'))
-                  and any(word in need.lower().replace(' ', '') for word in ('неболее', '≤', 'небольше'))):
+            elif (any(word in need for word in ('более', '>', 'больше'))
+                  and any(word in need for word in ('неболее', '≤', 'небольше'))):
 
-                # тут проверяем условие "< & <=" (need1 < have <= need2)
+                # "< & <=" (need[0] < have[0] <= need[1])
                 print(in_interval_biggest(need_num_list, have_num_list))
 
-            elif (any(word in need.lower().replace(' ', '') for word in ('менее', '<', 'меньше'))
-                  and any(word in need.lower().replace(' ', '') for word in ('неменее', '≥', 'неменьше'))):
+            elif (any(word in need for word in ('менее', '<', 'меньше'))
+                  and any(word in need for word in ('неменее', '≥', 'неменьше'))):
 
-                # тут проверяем условие "<= & <" (need1 < have <= need2)
+                # "<= & <" (need[0] < have[0] <= need[1])
                 print(in_interval_lowest(need_num_list, have_num_list))
 
-            elif (any(word in need.lower().replace(' ', '') for word in ('менее', '<', 'меньше'))
-                  and all(word not in need.lower().replace(' ', '') for word in ('более', '>', 'больше', '≥'))):
+            elif (any(word in need for word in ('менее', '<', 'меньше'))
+                  and all(word not in need for word in ('более', '>', 'больше', '≥'))):
 
-                # тут проверяем условие "менее чем" (need > have)
+                # "менее чем" (need[0] > have[0])
                 print(lowest(need_num_list, have_num_list))
 
-            elif (any(word in need.lower().replace(' ', '') for word in ('более', '>', 'больше'))
-                  and all(word not in need.lower().replace(' ', '') for word in ('менее', '<', 'меньше', '≤'))):
+            elif (any(word in need for word in ('более', '>', 'больше'))
+                  and all(word not in need for word in ('менее', '<', 'меньше', '≤'))):
 
-                # тут проверяем условие "более чем" (need < have)
+                # более чем (need[0] < have[0])
                 print(biggest(need_num_list, have_num_list))
 
-            elif (any(word in need.lower().replace(' ', '') for word in ('более', '>', 'больше'))
-                  and any(word in need.lower().replace(' ', '') for word in ('менее', '<', 'меньше'))):
+            elif (any(word in need for word in ('более', '>', 'больше'))
+                  and any(word in need for word in ('менее', '<', 'меньше'))):
 
-                # тут проверяем условие "более чем и менее чем" (need1 < have < need2)
+                # более чем и менее чем (need[0] < have[0] < need[1])
                 print(in_interval_not_equally(need_num_list, have_num_list))
 
             elif 0 < len(need_num_list) <= 2:
-                # проверяем заданы ли в условии только числа (или их интервал)
+                # в условии только числа
                 print(only_numbers(need_num_list, have_num_list))
 
-            elif len(set(list(need.lower())) - set(list(have.lower()))) >= 1:
-                # проверяем чисто текстовые условия, а так же возможные ошибки или опечатки
-                if ' и ' in need.lower() or ' или ' in need.lower():
+            elif len(set(list(need)) - set(list(have))) >= 1:
+                # ошибки/опечатки и условия с и/или
+                need = wordDoc.tables[1].rows[string].cells[2].text.lower()
+                have = wordDoc.tables[1].rows[string].cells[3].text.lower()
+
+                if ' и ' in need or ' или ' in need:
                     print(string_conditions(need, have))
                 else:
-                    print(f'Возможна ошибка или опечатка, строка: {wordDoc.tables[1].rows[string].cells[0].text}')
+                    print(f'Возможна ошибка или опечатка, строка: {string_number}')
 
-            elif len(need.lower()) > len(have.lower()):
-                # проверяем чисто текстовые условия с "И" и/или "ИЛИ"
+            elif len(need) > len(have):
+                # и/или
                 print(string_conditions(need, have))
 
             else:
-                print(f'Я не знаю что делать с этой строкой: {wordDoc.tables[1].rows[string].cells[0].text}')
+                print(f'Я не знаю что делать с этой строкой: {string_number}')
 
         print('Проверка файла завершена. Количество проверенных строк:', table_size)
 
